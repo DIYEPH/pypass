@@ -55,6 +55,7 @@
             },
           },
           m = function (t, e, r) {
+            S;
             var n = String(t);
             return !n || n.length >= e
               ? t
@@ -2732,198 +2733,100 @@
             m = (0, c.useState)(!0),
             y = m[0],
             _ = m[1];
-          (0, c.useEffect)(function () {
-            var t, e;
-            return (
-              (0, n.A)(
-                o().mark(function r() {
-                  var n, i, s, a, c;
-                  return o().wrap(
-                    function (r) {
-                      for (;;)
-                        switch ((r.prev = r.next)) {
-                          case 0:
-                            if (
-                              (a =
-                                null === (n = window.Telegram) || void 0 === n
-                                  ? void 0
-                                  : n.WebApp) &&
-                              window.TelegramWebviewProxy
-                            ) {
-                              r.next = 5;
-                              break;
-                            }
-                            return _(!1), r.abrupt("return");
-                          case 5:
-                            return (
-                              null === a || void 0 === a || a.ready(),
-                              null === a || void 0 === a || a.expand(),
-                              null === a ||
-                                void 0 === a ||
-                                null === (i = a.disableVerticalSwipes) ||
-                                void 0 === i ||
-                                i.call(a),
-                              (c =
-                                null === (s = window.Telegram) || void 0 === s
-                                  ? void 0
-                                  : s.WebView),
-                              (r.prev = 9),
-                              (r.next = 12),
-                              Promise.race([
-                                new Promise(function (e, r) {
-                                  var n = function () {
-                                    d(a), g(c), e();
-                                  };
-                                  c.onEvent(A, n),
-                                    c.postEvent("web_app_request_theme"),
-                                    (t = setTimeout(function () {
-                                      c.offEvent(A, n), r(new Error(w));
-                                    }, 1e3));
-                                }),
-                                new Promise(function (t, r) {
-                                  return (e = setTimeout(function () {
-                                    r(new Error(w));
-                                  }, 250));
-                                }),
-                              ])
-                            );
-                          case 12:
-                            r.next = 16;
-                            break;
-                          case 14:
-                            (r.prev = 14), (r.t0 = r.catch(9));
-                          case 16:
-                            return (r.prev = 16), _(!1), r.finish(16);
-                          case 19:
-                          case "end":
-                            return r.stop();
-                        }
-                    },
-                    r,
-                    null,
-                    [[9, 14, 16, 19]]
-                  );
-                })
-              )(),
-              function () {
-                t && clearTimeout(t), e && clearTimeout(e);
-              }
-            );
+
+          // Effect to initialize h and p
+          (0, c.useEffect)(() => {
+            const telegramApp = window.Telegram ? window.Telegram.WebApp : null;
+            const telegramWebView = window.Telegram
+              ? window.Telegram.WebView
+              : null;
+
+            if (telegramApp && telegramWebView) {
+              d(telegramApp);
+              // Assign WebApp instance to h
+              g(telegramWebView);
+              // Assign WebView instance to p
+            }
+
+            _(!1);
+            // Set loading state to false once initialization is complete
           }, []);
+
+          // Utility functions that depend on h and p
           var T = (0, c.useCallback)(
-              function (t) {
-                var e,
-                  r,
-                  n =
-                    null === h ||
-                    void 0 === h ||
-                    null === (e = h.initDataUnsafe) ||
-                    void 0 === e ||
-                    null === (r = e.user) ||
-                    void 0 === r
-                      ? void 0
-                      : r.id;
-                null === h ||
-                  void 0 === h ||
-                  h.openTelegramLink(
-                    (0, v.Mn)({
-                      refCode: n,
-                      text: t,
-                    })
-                  );
-              },
-              [h]
-            ),
-            k = (0, c.useCallback)(
-              function () {
-                var t, e;
-                return (0, u.C)(
-                  (0, v.Gg)({
-                    refCode:
-                      null === h ||
-                      void 0 === h ||
-                      null === (t = h.initDataUnsafe) ||
-                      void 0 === t ||
-                      null === (e = t.user) ||
-                      void 0 === e
-                        ? void 0
-                        : e.id,
-                  })
-                );
-              },
-              [
-                null === h ||
-                void 0 === h ||
-                null === (e = h.initDataUnsafe) ||
-                void 0 === e ||
-                null === (r = e.user) ||
-                void 0 === r
-                  ? void 0
-                  : r.id,
-              ]
-            ),
-            E = (0, c.useCallback)(
-              function () {
-                null === h ||
-                  void 0 === h ||
-                  h.shareToStory((0, v.VG)("calling-all-moonbix.png"));
-              },
-              [h]
-            ),
-            D = (0, c.useCallback)(
-              function () {
-                null === h || void 0 === h || h.close();
-              },
-              [h]
-            ),
-            C = (0, c.useMemo)(
-              function () {
-                var t, e;
-                return h
-                  ? {
-                      webApp: h,
-                      webView: p,
-                      initData:
-                        null === h || void 0 === h ? void 0 : h.initData,
-                      initParams:
-                        null === p || void 0 === p ? void 0 : p.initParams,
-                      unsafeData:
-                        null === h || void 0 === h ? void 0 : h.initDataUnsafe,
-                      user:
-                        null === h ||
-                        void 0 === h ||
-                        null === (t = h.initDataUnsafe) ||
-                        void 0 === t
-                          ? void 0
-                          : t.user,
-                      isStorySupported:
-                        null === h || void 0 === h
-                          ? void 0
-                          : h.isVersionAtLeast("7.8"),
-                      inviterId: x(
-                        null === h ||
-                          void 0 === h ||
-                          null === (e = h.initDataUnsafe) ||
-                          void 0 === e
-                          ? void 0
-                          : e.start_param
-                      ),
-                      copyShareLink: k,
-                      shareMessage: T,
-                      shareStory: E,
-                      closeApp: D,
-                    }
-                  : {};
-              },
-              [h, p, k, T, E, D]
-            ),
-            B = !!(null === h || void 0 === h ? void 0 : h.initData);
+            function (t) {
+              var e,
+                r,
+                n = h?.initDataUnsafe?.user?.id;
+              h?.openTelegramLink(
+                (0, v.Mn)({
+                  refCode: n,
+                  text: t,
+                })
+              );
+            },
+            [h]
+          );
+
+          var k = (0, c.useCallback)(
+            function () {
+              var t, e;
+              return (0, u.C)(
+                (0, v.Gg)({
+                  refCode: h?.initDataUnsafe?.user?.id,
+                })
+              );
+            },
+            [h?.initDataUnsafe?.user?.id]
+          );
+
+          var E = (0, c.useCallback)(
+            function () {
+              h?.shareToStory((0, v.VG)("calling-all-moonbix.png"));
+            },
+            [h]
+          );
+
+          var D = (0, c.useCallback)(
+            function () {
+              h?.close();
+            },
+            [h]
+          );
+
+          // Create context value with h and p
+          var C = (0, c.useMemo)(
+            function () {
+              var t, e;
+              return h
+                ? {
+                    webApp: h,
+                    webView: p,
+                    initData: h.initData,
+                    initParams: p?.initParams,
+                    unsafeData: h.initDataUnsafe,
+                    user: h?.initDataUnsafe?.user,
+                    isStorySupported: h?.isVersionAtLeast("7.8"),
+                    inviterId: x(h?.initDataUnsafe?.start_param),
+                    copyShareLink: k,
+                    shareMessage: T,
+                    shareStory: E,
+                    closeApp: D,
+                  }
+                : {};
+            },
+            [h, p, k, T, E, D]
+          );
+
+          var B = !!h?.initData;
+
+          // Rendering the different states
           return (0, a.jsxs)(S.Provider, {
             value: C,
             children: [
-              y && (0, a.jsx)(l.A, {}),
-              !y && B && i,
-              !y && !B && (0, a.jsx)(b, {}),
+              y && (0, a.jsx)(l.A, {}), // Show loading while y is true
+              !y && B && i, // Show main content if WebApp is initialized
+              !y && !B && (0, a.jsx)(b, {}), // Show QR code entry if WebApp is not initialized
             ],
           });
         }),
